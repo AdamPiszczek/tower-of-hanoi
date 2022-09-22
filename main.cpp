@@ -4,10 +4,9 @@
 unsigned int moves = 0;
 
 
-unsigned int required_moves(unsigned int number, char first_rod, char second_rod, char third_rod){
+void required_moves(unsigned int number, char first_rod, char second_rod, char third_rod){
     if(number == 1){
         moves += 1;
-        return moves;
     }
     else {
         required_moves(number-1, first_rod, third_rod, second_rod);
@@ -18,9 +17,12 @@ unsigned int required_moves(unsigned int number, char first_rod, char second_rod
 
 
 bool unit_test(){
-    for(int n=1; n<101; n++)
-        if(required_moves(n,'A','B','C') != (pow(2,n)-1))
+    for(int n=1; n<101; n++){
+        required_moves(n,'A','B','C');
+        if(moves != (pow(2,n)-1))
             return false;
+        moves = 0;
+    }
     return true;
 }
 
@@ -34,8 +36,8 @@ int main(){
     std::cout << "enter the number of disks: ";
     std::cin >> number;
     
-    unsigned int hanoi_moves = required_moves(number,'A','B','C');
-    std::cout << "Number of moves needed:" << hanoi_moves << std::endl;
+    required_moves(number,'A','B','C');
+    std::cout << "Number of moves needed:" << moves << std::endl;
     
     return 0;
 }
