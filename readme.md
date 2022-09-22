@@ -23,8 +23,8 @@
 ## How to Run
 
 ```sh
-> gcc main.cpp -o main.exe
-> main.exe
+> sudo g++ main.cpp -o main.out
+> ./main.out
 ```
 
 ## Dependiencies
